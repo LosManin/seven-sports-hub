@@ -109,7 +109,7 @@
   <div class="caja">
     <header>
       <div class="marca"><img src="logo.jpg" alt="" width="36" height="36">SEVEN</div>
-      <div class="vivo mono"><i></i><span id="gente"><b>1.6K+</b> on Telegram</span></div>
+      <div class="vivo mono"><i></i><span id="gente"><b>1.6K+</b> members</span></div>
     </header>
 
     <main>
@@ -151,7 +151,7 @@
     var gente = document.getElementById('gente');
     function cuenta() {
       fetch('/api/members', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-        if (d && d.ok && d.count > 0) gente.innerHTML = '<b>' + d.count.toLocaleString('en-US') + '</b> reading';
+        if (d && d.ok && d.count > 0) gente.innerHTML = '<b>' + d.count.toLocaleString('en-US') + '</b> members';
       }).catch(function () {});
     }
     cuenta(); setInterval(cuenta, 90000);
