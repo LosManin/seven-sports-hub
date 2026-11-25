@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SEVEN · Daily sports breakdowns</title>
-<meta name="description" content="Daily Football, NBA and Tennis match breakdowns, shared for free in the SEVEN Telegram community.">
-<meta name="theme-color" content="#030807">
+<title>SEVEN · The day's games in a 7-minute read</title>
+<meta name="description" content="SEVEN is a free Telegram channel with a short daily read on Football, Basketball and Tennis.">
+<meta name="theme-color" content="#f2efe6">
 <link rel="icon" href="logo.jpg">
 
-<!-- Meta Pixel (el mismo que Radicals y Masters; una sola vez) -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -23,160 +22,142 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#030807; --line:rgba(25,230,166,.16); --text:#effff9; --muted:#9cc2b5;
-          --mint:#19e6a6; --mint2:#0aa874; --glow:rgba(25,230,166,.45); }
+  :root { --paper:#f2efe6; --ink:#0c1411; --soft:#5d6b65; --rule:#d9d4c6; --mint:#12c48f; --deep:#0b7a59; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height:100%; }
-  /* Pensada para que TODO quepa en una pantalla de móvil sin hacer scroll */
-  body { font-family:Montserrat, 'Segoe UI', system-ui, sans-serif; color:var(--text); background:var(--bg);
-         min-height:100svh; display:flex; flex-direction:column; justify-content:center;
-         padding:max(12px, env(safe-area-inset-top)) 14px max(66px, calc(env(safe-area-inset-bottom) + 58px));
-         background-image:
-           radial-gradient(640px 420px at 50% -12%, rgba(25,230,166,.26), transparent 70%),
-           radial-gradient(460px 300px at 8% 95%, rgba(25,230,166,.08), transparent 70%); }
-  /* rejilla fina tipo gráfico de datos, como las barras del logo */
-  body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.5;
-                 background-image:linear-gradient(rgba(25,230,166,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(25,230,166,.05) 1px, transparent 1px);
-                 background-size:34px 34px; mask-image:radial-gradient(circle at 50% 30%, #000 0, transparent 75%);
-                 -webkit-mask-image:radial-gradient(circle at 50% 30%, #000 0, transparent 75%); }
-  .hero { position:relative; width:100%; max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden; border:1px solid var(--line);
-          background:linear-gradient(180deg, rgba(8,24,19,.96), rgba(4,12,10,.97)); box-shadow:0 24px 60px rgba(0,0,0,.6); }
-  .top { padding:22px 20px 16px; text-align:center;
-         background:linear-gradient(160deg, rgba(25,230,166,.18), rgba(25,230,166,.03) 55%, transparent); }
-  .avatar { width:98px; height:98px; border-radius:50%; object-fit:cover; display:block; margin:0 auto 12px;
-            box-shadow:0 0 0 5px rgba(25,230,166,.12), 0 0 34px var(--glow); animation:brillo 3.6s ease-in-out infinite; }
-  @keyframes brillo { 0%, 100% { box-shadow:0 0 0 5px rgba(25,230,166,.12), 0 0 26px rgba(25,230,166,.30); }
-                      50% { box-shadow:0 0 0 5px rgba(25,230,166,.18), 0 0 44px rgba(25,230,166,.55); } }
-  h1 { font-size:25px; font-weight:900; line-height:1.15; }
-  h1 em { font-style:normal; color:var(--mint); }
-  .lead { color:var(--muted); font-size:14.5px; margin-top:8px; line-height:1.45; font-weight:500; }
+  body { font-family:Sora, system-ui, sans-serif; background:var(--paper); color:var(--ink);
+         min-height:100svh; padding-bottom:calc(92px + env(safe-area-inset-bottom)); }
+  .wrap { max-width:560px; margin:0 auto; padding:0 20px; }
 
-  /* contador EN DIRECTO (igual que Radicals y Masters) */
-  .members { display:inline-flex; align-items:center; gap:8px; margin-top:13px; padding:7px 14px; border-radius:999px;
-             background:rgba(25,230,166,.08); border:1px solid rgba(25,230,166,.30); font-size:13px; font-weight:700; color:#e6fff6; }
-  .members b { color:var(--mint); font-weight:900; }
-  .dot { width:8px; height:8px; border-radius:50%; background:var(--mint); animation:latido 1.8s infinite; }
-  @keyframes latido { 0% { box-shadow:0 0 0 0 rgba(25,230,166,.6); } 70% { box-shadow:0 0 0 8px rgba(25,230,166,0); } 100% { box-shadow:0 0 0 0 rgba(25,230,166,0); } }
+  /* cabecera fina */
+  header { display:flex; align-items:center; justify-content:space-between; padding:max(16px, env(safe-area-inset-top)) 0 14px;
+           border-bottom:1px solid var(--rule); }
+  .marca { display:flex; align-items:center; gap:10px; font-weight:800; font-size:17px; letter-spacing:4px; }
+  .marca img { width:34px; height:34px; border-radius:50%; display:block; }
+  .vivo { font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--soft); display:flex; align-items:center; gap:7px; }
+  .vivo i { width:7px; height:7px; background:var(--mint); border-radius:2px; animation:parpadeo 1.4s steps(2) infinite; }
+  @keyframes parpadeo { 50% { opacity:.2; } }
 
-  .body { padding:16px 18px 18px; }
-  .feat { display:grid; gap:9px; }
-  .f { display:flex; gap:11px; align-items:center; padding:10px 12px; border-radius:13px; background:rgba(255,255,255,.03); border:1px solid var(--line); }
-  .f .n { flex:none; width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center;
-          font-weight:900; font-size:12px; color:#02140e; background:linear-gradient(180deg, var(--mint), var(--mint2)); }
-  .f p { font-size:14px; line-height:1.35; color:#d3eee5; font-weight:500; text-align:left; }
-  .f p strong { color:#fff; font-weight:700; }
+  /* titular editorial alineado a la izquierda */
+  .titular { padding:30px 0 22px; }
+  .eti { font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--deep); letter-spacing:1px; text-transform:uppercase; }
+  h1 { font-size:clamp(34px, 10vw, 48px); line-height:1.02; font-weight:800; letter-spacing:-1.5px; margin-top:12px; }
+  h1 .siete { display:inline-block; background:var(--ink); color:var(--mint); padding:0 10px; border-radius:6px; transform:rotate(-2deg); }
+  .sub { margin-top:16px; font-size:15.5px; line-height:1.55; color:var(--soft); max-width:440px; }
 
-  .cta { margin-top:16px; display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:16px 16px;
-         border-radius:13px; text-decoration:none; color:#02140e; font-weight:900; font-size:15px; letter-spacing:1.1px;
-         background:linear-gradient(90deg, var(--mint2), var(--mint), #5cf5c6); box-shadow:0 12px 30px rgba(25,230,166,.35);
-         position:relative; overflow:hidden; }
-  .cta svg { width:20px; height:20px; flex:none; }
-  .cta::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%);
-                transform:translateX(-100%); animation:barrido 3.4s ease-in-out infinite; }
-  @keyframes barrido { 0%, 55% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
-  .note { margin-top:8px; text-align:center; font-size:12px; color:var(--muted); }
-  .pie { margin-top:12px; display:flex; align-items:center; justify-content:center; gap:10px; font-size:14px; color:var(--muted); }
-  .pie b { color:#fff; font-weight:800; }
-  .pie .age { padding:1px 7px; border-radius:6px; border:1px solid rgba(255,255,255,.2); color:#c4dcd3; font-weight:700; font-size:11px; }
-  .legal { margin-top:8px; text-align:center; font-size:10.5px; color:#5f8577; }
+  /* tres deportes en fichas cuadradas negras */
+  .deportes { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+  .dep { background:var(--ink); color:#fff; border-radius:14px; padding:14px 12px 12px; aspect-ratio:1/1.05;
+         display:flex; flex-direction:column; justify-content:space-between; }
+  .dep svg { width:30px; height:30px; color:var(--mint); }
+  .dep b { font-size:13.5px; font-weight:600; }
 
-  /* botón flotante de Telegram «JOIN FREE» abajo a la derecha (a mano del pulgar) */
-  .flotante { position:fixed; right:14px; bottom:max(14px, env(safe-area-inset-bottom)); z-index:10; display:flex; align-items:center; gap:8px;
-              padding:10px 16px 10px 12px; border-radius:999px; text-decoration:none; color:#fff; font-weight:900; font-size:13px; letter-spacing:.8px;
-              background:linear-gradient(180deg, #2aabee, #1f8fd6); animation:pulso 2.2s infinite; }
-  .flotante svg { width:24px; height:24px; flex:none; }
-  @keyframes pulso { 0% { box-shadow:0 10px 26px rgba(0,0,0,.55), 0 0 0 0 rgba(42,171,238,.55); }
-                     70% { box-shadow:0 10px 26px rgba(0,0,0,.55), 0 0 0 14px rgba(42,171,238,0); }
-                     100% { box-shadow:0 10px 26px rgba(0,0,0,.55), 0 0 0 0 rgba(42,171,238,0); } }
-  /* pantallas bajas (menos de 740 px visibles): se aprieta un poco para que quepa todo */
-  @media (max-height:740px) { .avatar { width:82px; height:82px; margin-bottom:10px; } h1 { font-size:23px; } .lead { font-size:13.5px; margin-top:6px; }
-                              .top { padding:18px 18px 14px; } .body { padding:14px 16px 16px; } .feat { gap:8px; } .f { padding:9px 11px; }
-                              .f p { font-size:13.5px; } .cta { margin-top:14px; padding:15px; } }
-  @media (max-height:640px) { .avatar { width:68px; height:68px; } h1 { font-size:21px; } .f { padding:7px 10px; } .f p { font-size:13px; } }
-  @media (prefers-reduced-motion:reduce) { .cta::after, .dot, .flotante, .avatar { animation:none; } }
+  /* cómo funciona: línea de tiempo vertical */
+  .pasos { margin:26px 0 8px; border-left:2px solid var(--ink); padding-left:18px; display:grid; gap:16px; }
+  .paso { position:relative; }
+  .paso::before { content:""; position:absolute; left:-25px; top:4px; width:12px; height:12px; background:var(--paper);
+                  border:2px solid var(--ink); border-radius:50%; }
+  .paso:first-child::before { background:var(--mint); }
+  .paso h3 { font-size:15px; font-weight:600; }
+  .paso p { font-size:13.5px; color:var(--soft); margin-top:3px; line-height:1.45; }
+
+  footer { margin-top:24px; padding:14px 0 10px; border-top:1px solid var(--rule); font-size:11px; color:var(--soft); line-height:1.5; }
+
+  /* barra fija abajo a todo lo ancho */
+  .barra { position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(--ink);
+           padding:12px 16px calc(12px + env(safe-area-inset-bottom)); }
+  .barra .wrap { display:flex; align-items:center; gap:12px; padding:0; }
+  .barra .txt { flex:1; color:#cfd8d4; font-size:12px; line-height:1.35; }
+  .barra .txt b { color:#fff; display:block; font-size:14px; }
+  .entrar { flex:none; display:flex; align-items:center; gap:8px; background:var(--mint); color:var(--ink); text-decoration:none;
+            font-weight:800; font-size:14px; padding:13px 18px; border-radius:10px; }
+  .entrar svg { width:18px; height:18px; }
+  .entrar:active { transform:translateY(1px); }
+  @media (prefers-reduced-motion:reduce) { .vivo i { animation:none; } }
 </style>
 </head>
 <body>
-  <main class="hero">
-    <div class="top">
-      <img class="avatar" src="logo.jpg" alt="SEVEN" width="98" height="98">
-      <h1>Every match, <em>read by the numbers</em></h1>
-      <p class="lead">Football, NBA &amp; Tennis breakdowns, shared every day in our Telegram community.</p>
-      <div class="members"><span class="dot"></span><span><b id="miembros">1.6K+</b> <span id="miembros-txt">members on Telegram</span></span></div>
-    </div>
+  <div class="wrap">
+    <header>
+      <div class="marca"><img src="logo.jpg" alt="" width="34" height="34">SEVEN</div>
+      <div class="vivo"><i></i><span id="gente">on Telegram</span></div>
+    </header>
 
-    <div class="body">
-      <div class="feat">
-        <div class="f"><span class="n">01</span><p><strong>Daily previews</strong> of the top games in every sport</p></div>
-        <div class="f"><span class="n">02</span><p><strong>Stats and trends</strong> explained in plain words</p></div>
-        <div class="f"><span class="n">03</span><p><strong>Free daily content</strong> straight to your Telegram</p></div>
+    <section class="titular">
+      <p class="eti">Free · Telegram channel</p>
+      <h1>The day's games in a <span class="siete">7-minute</span> read.</h1>
+      <p class="sub">Every morning we pick the matches worth watching and explain why, with the numbers behind them. Short, clear and free.</p>
+    </section>
+
+    <section class="deportes" aria-label="Sports we cover">
+      <div class="dep">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 4.5h-5L8 10z"/><path d="M12 7V3.5M16 10l3.3-1.6M14.5 14.5l2 3M9.5 14.5l-2 3M8 10 4.7 8.4"/></svg>
+        <b>Football</b>
       </div>
+      <div class="dep">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6c3 2.6 3 10.2 0 12.8M18.4 5.6c-3 2.6-3 10.2 0 12.8"/></svg>
+        <b>Basketball</b>
+      </div>
+      <div class="dep">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5 6.5c4 3 4 8 0 11M19 6.5c-4 3-4 8 0 11"/></svg>
+        <b>Tennis</b>
+      </div>
+    </section>
 
-      <a class="cta tg" href="https://t.me/+FcfVuH7_fEo0OGQ8" data-origen="principal">
+    <section class="pasos">
+      <div class="paso"><h3>Join the channel</h3><p>One tap opens Telegram. No sign-up forms.</p></div>
+      <div class="paso"><h3>Read the morning brief</h3><p>The key games of the day with form, stats and context.</p></div>
+      <div class="paso"><h3>Watch with more insight</h3><p>Follow the games knowing what to look for.</p></div>
+    </section>
+
+    <footer>SEVEN publishes sports analysis for information and entertainment only. 18+.</footer>
+  </div>
+
+  <div class="barra">
+    <div class="wrap">
+      <div class="txt"><b>Join SEVEN for free</b>Opens in Telegram</div>
+      <a class="entrar" href="https://t.me/+FcfVuH7_fEo0OGQ8" data-sitio="barra">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.6 18.7 19.7c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.4l-4.8-1.5c-1-.3-1.1-1 .2-1.5L20.5 3.1c.9-.3 1.7.2 1.4 1.5z"/></svg>
-        GET FREE ACCESS
+        Open
       </a>
-      <p class="note">Free · Telegram channel · Join in one tap</p>
-      <div class="pie"><span>⭐️⭐️⭐️⭐️⭐️ <b>4.9/5</b> rating</span><span class="age">18+</span></div>
     </div>
-  </main>
-  <p class="legal">SEVEN shares sports analysis for information and entertainment.</p>
-
-  <a class="flotante tg" href="https://t.me/+FcfVuH7_fEo0OGQ8" data-origen="flotante" aria-label="Join SEVEN on Telegram for free">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.6 18.7 19.7c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.4l-4.8-1.5c-1-.3-1.1-1 .2-1.5L20.5 3.1c.9-.3 1.7.2 1.4 1.5z"/></svg>
-    JOIN FREE
-  </a>
+  </div>
 
 <script>
-  // Contador REAL de miembros del canal (api/members.js), en directo como en Radicals y Masters.
-  // Si Telegram no responde, se queda «1.6K+ members on Telegram».
   (function () {
-    var el = document.getElementById('miembros'), txt = document.getElementById('miembros-txt'), actual = 0;
-    function pinta(n) { el.textContent = n.toLocaleString('en-US'); }
-    function animar(desde, hasta) {
-      var t0 = performance.now(), dur = desde ? 900 : 1400;
-      (function paso(t) { var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-        pinta(Math.round(desde + (hasta - desde) * e)); if (p < 1) requestAnimationFrame(paso); })(t0);
-    }
-    function cargar() {
+    var gente = document.getElementById('gente');
+    function cuenta() {
       fetch('/api/members', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-        if (!d || !d.ok || !(d.count > 0)) return;
-        txt.textContent = 'members · live';
-        if (d.count !== actual) { animar(actual || Math.round(d.count * 0.92), d.count); actual = d.count; }
+        if (d && d.ok && d.count > 0) gente.textContent = d.count.toLocaleString('en-US') + ' reading';
       }).catch(function () {});
     }
-    cargar(); setInterval(cargar, 60000);
-  })();
+    cuenta(); setInterval(cuenta, 90000);
 
-  // Clic en el botón de Telegram: Lead (1,35 €) + JoinTelegramClick por el pixel y por el servidor,
-  // con el MISMO identificador (Meta no cuenta doble). Después pasa por /api/join, que crea un
-  // enlace de «solicitar unirse» solo para esta visita. Sin JavaScript va al enlace general.
-  document.querySelectorAll('a.tg').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var id = Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    var boton = document.querySelector('a.entrar');
+    boton.addEventListener('click', function () {
+      var ref = Math.random().toString(36).slice(2, 9) + Date.now().toString(36);
       try {
         if (window.fbq) {
-          fbq('track', 'Lead', { value: 1.35, currency: 'EUR' }, { eventID: 'ld_' + id });
-          fbq('trackCustom', 'JoinTelegramClick', {}, { eventID: 'jt_' + id });
+          fbq('track', 'Lead', { value: 1.35, currency: 'EUR' }, { eventID: 'ld_' + ref });
+          fbq('trackCustom', 'JoinTelegramClick', {}, { eventID: 'jt_' + ref });
         }
       } catch (e) {}
+      var galleta = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? m[1] : ''; };
+      var clid = new URLSearchParams(location.search).get('fbclid');
       try {
-        var ck = function (n) { return (document.cookie.match('(?:^|; )' + n + '=([^;]*)') || [])[1] || ''; };
-        var fbclid = new URLSearchParams(location.search).get('fbclid');
-        var fbc = ck('_fbc') || (fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '');
-        var datos = JSON.stringify({ id: id, origen: a.dataset.origen, url: location.href, fbp: ck('_fbp'), fbc: fbc });
-        if (!navigator.sendBeacon || !navigator.sendBeacon('/api/meta-conversion', new Blob([datos], { type: 'application/json' })))
-          fetch('/api/meta-conversion', { method: 'POST', body: datos, keepalive: true, headers: { 'Content-Type': 'application/json' } });
+        var cuerpo = JSON.stringify({ id: ref, origen: boton.dataset.sitio, url: location.href,
+          fbp: galleta('_fbp'), fbc: galleta('_fbc') || (clid ? 'fb.1.' + Date.now() + '.' + clid : '') });
+        if (!(navigator.sendBeacon && navigator.sendBeacon('/api/meta-conversion', new Blob([cuerpo], { type: 'application/json' }))))
+          fetch('/api/meta-conversion', { method: 'POST', body: cuerpo, keepalive: true, headers: { 'Content-Type': 'application/json' } });
       } catch (e) {}
       try {
-        var p = new URLSearchParams({ id: id, u: location.href.split('#')[0] });
-        if (fbclid) p.set('fbclid', fbclid);
-        a.href = '/api/join?' + p.toString();
+        var q = new URLSearchParams({ id: ref, u: location.href.split('#')[0] });
+        if (clid) q.set('fbclid', clid);
+        boton.href = '/api/join?' + q.toString();
       } catch (e) {}
     });
-  });
+  })();
 </script>
 </body>
 </html>
