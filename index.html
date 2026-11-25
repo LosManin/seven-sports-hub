@@ -85,6 +85,16 @@
 
   @media (max-height:720px) { h1 { font-size:31px; } .sub { font-size:13.5px; margin-top:8px; } .lista { margin-top:12px; gap:6px; }
                               .item { padding:8px 11px; } .grande { margin-top:14px; padding:16px; } }
+  /* móviles pequeños (iPhone SE y parecidos): todo más apretado para que quepa sin scroll y el botón flotante no tape nada */
+  @media (max-height:620px) { body { padding-top:max(8px, env(safe-area-inset-top)); padding-bottom:max(10px, env(safe-area-inset-bottom)); }
+                              header { padding-bottom:4px; } .marca img { width:30px; height:30px; } .marca { font-size:15px; }
+                              main { padding-top:2px; } h1 { font-size:27px; margin-top:6px; } .eti { font-size:10.5px; }
+                              .sub { font-size:12.5px; margin-top:6px; line-height:1.4; } .lista { margin-top:9px; gap:5px; }
+                              .item { padding:6px 10px; gap:10px; } .item svg { width:18px; height:18px; } .item p { font-size:12.5px; }
+                              .grande { margin-top:11px; padding:14px; font-size:14.5px; } .bajo { margin-top:6px; font-size:11px; }
+                              footer { padding-top:6px; font-size:9.5px; } .lado { width:48px; height:48px; border-radius:15px; right:12px; bottom:10px; }
+                              .lado svg { width:24px; height:24px; } }
+  @media (max-width:340px) { footer { padding-right:54px; padding-left:0; text-align:left; } }
   @media (prefers-reduced-motion:reduce) { .vivo i, .grande, .grande::after, .lado { animation:none; } }
 </style>
 </head>
